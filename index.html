@@ -3,24 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Jamfify Africa — Certified Jamf Now Partner</title>
 
     <!-- ✅ SEO Meta Tags -->
     <meta
       name="description"
-      content="Jamfify Africa — Certified Jamf Partner providing Jamf Now onboarding and managed services across Africa. We help businesses deploy, manage, and secure Apple devices with ease."
+      content="Jamfify Africa — Certified Jamf Partner providing Jamf Now onboarding and managed services across Africa. We help businesses deploy and secure Apple devices efficiently."
     />
     <meta
       name="keywords"
-      content="Jamf Now Africa, Jamf Partner Africa, Apple MDM, Apple device management, Jamf onboarding, Jamf managed services, Apple Business Manager Africa"
+      content="Jamf Now Africa, Apple MDM Africa, Jamf Partner, Apple device management, Jamf onboarding, Jamf managed services, Apple Business Manager Africa"
     />
     <meta name="author" content="Jamfify Africa" />
 
-    <!-- ✅ Open Graph -->
+    <!-- ✅ Open Graph Tags (for social media previews) -->
     <meta property="og:title" content="Jamfify Africa — Certified Jamf Now Partner" />
     <meta
       property="og:description"
-      content="Expert Apple management solutions from a certified Jamf Partner. Jamfify Africa helps businesses deploy and secure Apple devices across the continent."
+      content="Expert Apple management solutions across Africa. Get certified Jamf Now onboarding and managed services today."
     />
     <meta property="og:image" content="https://jamfifyafrica.com/logo.png" />
     <meta property="og:url" content="https://jamfifyafrica.com/" />
@@ -29,14 +30,25 @@
     <link rel="icon" href="/logo.png" />
     <meta name="theme-color" content="#0A2540" />
 
-    <!-- ✅ Vite will inject correct build filenames automatically -->
+    <!-- ✅ Google Analytics (replace G-XXXXXXXXXX with your GA4 ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX"); // Replace with your GA4 Measurement ID
+    </script>
+
+    <!-- ✅ Vite entrypoint -->
     <script type="module" src="/src/main.jsx"></script>
   </head>
 
   <body class="bg-[#F5F7FA]">
     <div id="root"></div>
 
-    <!-- Hidden form for Netlify to detect -->
+    <!-- ✅ Hidden form for Netlify to detect -->
     <form name="contact" netlify hidden>
       <input type="text" name="name" />
       <input type="email" name="email" />
