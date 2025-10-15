@@ -204,38 +204,64 @@ export default function App() {
           </p>
 
           <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            onSubmit={handleSubmit}
-            className="grid gap-4 text-left"
-          >
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="text" name="name" placeholder="Your name" required className="p-3 border rounded-md" />
-            <input type="email" name="email" placeholder="Your email" required className="p-3 border rounded-md" />
-            <textarea name="message" placeholder="How can we help you?" required className="p-3 border rounded-md h-32" />
-            <button
-              type="submit"
-              className="px-6 py-3 bg-[var(--jamf-navy)] text-white rounded-lg font-medium hover:bg-[#162141] disabled:opacity-60"
-              disabled={status.state === "loading"}
-            >
-              {status.state === "loading" ? "Sending…" : "Send Message"}
-            </button>
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-honeypot="bot-field"
+  onSubmit={handleSubmit}
+  className="grid gap-4 text-left"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p className="hidden">
+    <label>
+      Don’t fill this out if you’re human: <input name="bot-field" />
+    </label>
+  </p>
 
-            {status.state !== "idle" && (
-              <p
-                className={`text-sm mt-2 ${
-                  status.state === "success"
-                    ? "text-green-600"
-                    : status.state === "error"
-                    ? "text-red-600"
-                    : "text-gray-600"
-                }`}
-              >
-                {status.message}
-              </p>
-            )}
-          </form>
+  <input
+    type="text"
+    name="name"
+    placeholder="Your name"
+    required
+    className="p-3 border rounded-md"
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Your email"
+    required
+    className="p-3 border rounded-md"
+  />
+  <textarea
+    name="message"
+    placeholder="How can we help you?"
+    required
+    className="p-3 border rounded-md h-32"
+  ></textarea>
+
+  <button
+    type="submit"
+    className="px-6 py-3 bg-[var(--jamf-navy)] text-white rounded-lg font-medium hover:bg-[#162141] disabled:opacity-60"
+    disabled={status.state === "loading"}
+  >
+    {status.state === "loading" ? "Sending…" : "Send Message"}
+  </button>
+
+  {status.state !== "idle" && (
+    <p
+      className={`text-sm mt-2 ${
+        status.state === "success"
+          ? "text-green-600"
+          : status.state === "error"
+          ? "text-red-600"
+          : "text-gray-600"
+      }`}
+    >
+      {status.message}
+    </p>
+  )}
+</form>
+          
         </div>
       </section>
 
