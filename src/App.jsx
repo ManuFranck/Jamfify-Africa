@@ -156,42 +156,78 @@ export default function App() {
       </section>
 
       {/* SOLUTIONS */}
-      <section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
-            Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
-          </h3>
-          <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-10">
-            Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — bringing Jamf’s best-in-class solutions to local teams and businesses.
-          </p>
+<section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+    <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
+      Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
+    </h3>
+    <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-12">
+      Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — bringing Jamf’s best-in-class solutions to local teams and businesses.
+    </p>
 
-          <div className="grid md:grid-cols-3 gap-8 text-left">
-            {[
-              {
-                title: "Zero-Touch Deployment",
-                img: "https://www.jamf.com/assets/img/icons/icon-deployment.svg",
-                desc: "Automate the setup and configuration of new Apple devices right out of the box using Apple Business Manager and Jamf Now.",
-              },
-              {
-                title: "Device Management",
-                img: "https://www.jamf.com/assets/img/icons/icon-management.svg",
-                desc: "Gain full control over your Apple fleet with remote commands, inventory, and configuration profiles — all in one place.",
-              },
-              {
-                title: "Security & Compliance",
-                img: "https://www.jamf.com/assets/img/icons/icon-security.svg",
-                desc: "Protect company data with Jamf’s advanced Apple security frameworks — including encryption enforcement and threat detection.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
-                <img src={item.img} alt={item.title} className="w-12 h-12 mb-4" />
-                <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">{item.title}</h4>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    {/* Animated Features */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+      {[
+        {
+          title: "Automated Apple Deployment",
+          desc: "Instant device setup with zero-touch provisioning — iMacs, iPads, and MacBooks are auto-enrolled and preconfigured.",
+          icon: "💻",
+          delay: 0.1,
+        },
+        {
+          title: "Centralized Device Dashboard",
+          desc: "View all managed devices and their compliance status in a unified dashboard that makes monitoring effortless.",
+          icon: "📊",
+          delay: 0.2,
+        },
+        {
+          title: "Remote Security Enforcement",
+          desc: "Protect company data and enforce device security remotely with advanced Apple frameworks — all in real-time.",
+          icon: "🔒",
+          delay: 0.3,
+        },
+        {
+          title: "App Distribution & Updates",
+          desc: "Easily distribute App Store or in-house apps, and ensure all devices are up to date with the latest versions.",
+          icon: "📱",
+          delay: 0.4,
+        },
+        {
+          title: "User Empowerment Portal",
+          desc: "Empower your teams through a Jamf self-service portal — install approved apps and updates without IT assistance.",
+          icon: "🧑‍💻",
+          delay: 0.5,
+        },
+      ].map((item) => (
+        <motion.div
+          key={item.title}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: item.delay }}
+          viewport={{ once: true }}
+          className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition"
+        >
+          <div className="text-5xl mb-4">{item.icon}</div>
+          <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
+            {item.title}
+          </h4>
+          <p className="text-gray-600 text-sm">{item.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* CTA */}
+    <div className="mt-16">
+      <a
+        href="#contact"
+        className="inline-block px-8 py-4 bg-[var(--jamf-navy)] text-white font-semibold rounded-xl shadow hover:bg-[#162141] transition"
+      >
+        Explore Jamf Solutions
+      </a>
+    </div>
+  </div>
+</section>
+
 
       {/* PRICING */}
       <section id="pricing" className="py-20 bg-white">
