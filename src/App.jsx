@@ -46,33 +46,49 @@ export default function App() {
         </div>
       </header>
 
-      {/* HERO VIDEO SECTION */}
-      <section id="top" className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden flex items-center justify-center text-center text-white">
-        {/* Background video */}
+      {/* HERO VIDEO SECTION (YouTube Background) */}
+      <section
+        id="top"
+        className="relative w-full h-[80vh] md:h-[90vh] flex items-center justify-center text-center text-white overflow-hidden"
+      >
+        {/* Background YouTube video */}
         <div className="absolute inset-0 -z-10">
           <iframe
-            className="w-full h-full object-cover"
-            src="https://www.youtube.com/embed/nRZDWm2UMic?autoplay=1&mute=1&loop=1&playlist=nRZDWm2UMic&controls=0&modestbranding=1&showinfo=0"
+            className="w-full h-full scale-125 object-cover"
+            src="https://www.youtube.com/embed/nRZDWm2UMic?autoplay=1&mute=1&controls=0&loop=1&playlist=nRZDWm2UMic&modestbranding=1&showinfo=0&rel=0"
             title="Jamf Now Overview"
             frameBorder="0"
             allow="autoplay; fullscreen"
             allowFullScreen
           ></iframe>
-
-          {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
         {/* Foreground content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-5xl font-extrabold leading-tight mb-6"
+          >
             Empowering Africa with Jamf Now Expertise
-          </h2>
-          <p className="text-lg md:text-xl text-gray-200 mb-10">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-lg md:text-xl text-gray-200 mb-10"
+          >
             Certified Jamf Partner delivering onboarding and managed services for Apple devices — built for businesses across Africa.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <a
               href="#contact"
               className="px-6 py-3 bg-white text-[var(--jamf-navy)] font-medium rounded-lg shadow hover:bg-gray-100 transition"
@@ -87,7 +103,7 @@ export default function App() {
             >
               Sign up with Jamf Now
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -269,7 +285,6 @@ export default function App() {
       {/* FOOTER */}
       <footer className="bg-[var(--jamf-navy)] text-gray-300 py-10">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-start">
-          {/* Left */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <img src={logoUrl} alt="Jamfify Africa Logo" className="w-10 h-10" />
@@ -280,7 +295,6 @@ export default function App() {
             </p>
           </div>
 
-          {/* Center */}
           <div>
             <h4 className="text-white font-semibold mb-3">Contact Us</h4>
             <ul className="space-y-2 text-sm">
@@ -314,7 +328,6 @@ export default function App() {
             </ul>
           </div>
 
-          {/* Right */}
           <div className="flex flex-col gap-2 text-sm text-gray-400 md:items-end">
             <p>© {new Date().getFullYear()} Jamfify Africa — Certified Jamf Now Partner</p>
             <div className="flex gap-4">
