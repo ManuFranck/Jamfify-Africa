@@ -11,16 +11,11 @@ export default function App() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("/", {
-        method: "POST",
-        body: data,
-      });
+      const res = await fetch("/", { method: "POST", body: data });
       if (res.ok) {
         setStatus({ state: "success", message: "Thanks! Your message has been sent." });
         form.reset();
-      } else {
-        throw new Error("Form submission failed");
-      }
+      } else throw new Error("Form submission failed");
     } catch (err) {
       setStatus({ state: "error", message: err.message });
     }
@@ -28,6 +23,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--jamf-bg)] text-[var(--jamf-text)] antialiased scroll-smooth">
+
       {/* HEADER */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -40,16 +36,11 @@ export default function App() {
               </div>
             </a>
           </div>
+
           <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
-            <a href="#services" className="hover:text-[var(--jamf-blue)]">
-              Services
-            </a>
-            <a href="#solutions" className="hover:text-[var(--jamf-blue)]">
-              Solutions
-            </a>
-            <a href="#pricing" className="hover:text-[var(--jamf-blue)]">
-              Pricing
-            </a>
+            <a href="#services" className="hover:text-[var(--jamf-blue)]">Services</a>
+            <a href="#solutions" className="hover:text-[var(--jamf-blue)]">Solutions</a>
+            <a href="#pricing" className="hover:text-[var(--jamf-blue)]">Pricing</a>
             <a
               href="#contact"
               className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]"
@@ -61,7 +52,10 @@ export default function App() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="bg-gradient-to-br from-[var(--jamf-navy)] to-[var(--jamf-blue)] text-white py-20">
+      <section
+        id="top"
+        className="bg-gradient-to-br from-[var(--jamf-navy)] to-[var(--jamf-blue)] text-white py-20"
+      >
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
           <motion.div
             initial={{ x: -30, opacity: 0 }}
@@ -74,6 +68,7 @@ export default function App() {
             <p className="mt-4 text-lg text-gray-100">
               Onboarding and Managed Services to deploy, secure, and manage Apple devices with confidence.
             </p>
+
             <div className="mt-8 flex gap-4">
               <a
                 href="#contact"
@@ -101,6 +96,7 @@ export default function App() {
           <p className="max-w-2xl mx-auto text-gray-600 mb-12">
             From launch to maintenance, we support your Jamf Now journey end-to-end.
           </p>
+
           <div className="grid md:grid-cols-2 gap-8 text-left">
             <div className="p-8 bg-[var(--jamf-bg)] rounded-2xl shadow hover:shadow-md transition">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Onboarding Services</h4>
@@ -113,11 +109,10 @@ export default function App() {
                 <li>Security & compliance profiles</li>
               </ul>
             </div>
+
             <div className="p-8 bg-[var(--jamf-bg)] rounded-2xl shadow hover:shadow-md transition">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Managed Services</h4>
-              <p className="mt-3 text-gray-600">
-                Ongoing operations, security, updates, optimization.
-              </p>
+              <p className="mt-3 text-gray-600">Ongoing operations, security, updates, optimization.</p>
               <ul className="mt-4 text-gray-600 list-disc list-inside">
                 <li>Continuous monitoring & updates</li>
                 <li>Policy reviews & compliance</li>
@@ -183,12 +178,14 @@ export default function App() {
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">Pricing Plans</h3>
+
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-[var(--jamf-bg)] p-8 rounded-2xl shadow">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Onboarding Package</h4>
               <p className="mt-3 text-gray-600">Full setup and configuration services.</p>
               <div className="mt-4 text-2xl font-bold">From €1,000 (one-time)</div>
             </div>
+
             <div className="bg-[var(--jamf-bg)] p-8 rounded-2xl shadow">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Managed Services Plan</h4>
               <p className="mt-3 text-gray-600">Monthly plan for ongoing support.</p>
@@ -206,7 +203,6 @@ export default function App() {
             Ready to get started with Jamf? Reach out or sign up directly.
           </p>
 
-          {/* Netlify form (no backend needed) */}
           <form
             name="contact"
             method="POST"
@@ -217,12 +213,7 @@ export default function App() {
             <input type="hidden" name="form-name" value="contact" />
             <input type="text" name="name" placeholder="Your name" required className="p-3 border rounded-md" />
             <input type="email" name="email" placeholder="Your email" required className="p-3 border rounded-md" />
-            <textarea
-              name="message"
-              placeholder="How can we help you?"
-              required
-              className="p-3 border rounded-md h-32"
-            ></textarea>
+            <textarea name="message" placeholder="How can we help you?" required className="p-3 border rounded-md h-32" />
             <button
               type="submit"
               className="px-6 py-3 bg-[var(--jamf-navy)] text-white rounded-lg font-medium hover:bg-[#162141] disabled:opacity-60"
@@ -230,6 +221,7 @@ export default function App() {
             >
               {status.state === "loading" ? "Sending…" : "Send Message"}
             </button>
+
             {status.state !== "idle" && (
               <p
                 className={`text-sm mt-2 ${
@@ -249,21 +241,60 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="bg-[var(--jamf-navy)] text-gray-300 py-10">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <a href="#top" className="flex items-center gap-3">
-            <img src={logoUrl} alt="Jamfify Africa Logo" className="w-10 h-10" />
-            <span className="font-semibold text-white">Jamfify Africa</span>
-          </a>
-          <p className="text-sm">
-            © {new Date().getFullYear()} Jamfify Africa — Certified Jamf Now Partner
-          </p>
-          <div className="flex gap-4 text-sm">
-            <a href="#" className="hover:text-white">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms
-            </a>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-start">
+
+          {/* Left - Logo and About */}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <img src={logoUrl} alt="Jamfify Africa Logo" className="w-10 h-10" />
+              <span className="font-semibold text-white text-lg">Jamfify Africa</span>
+            </div>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              Certified Jamf Now Partner helping African businesses deploy, manage, and secure Apple devices efficiently.
+            </p>
+          </div>
+
+          {/* Center - Contact Info */}
+          <div>
+            <h4 className="text-white font-semibold mb-3">Contact Us</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                📧 <a href="mailto:info@jamfifyafrica.com" className="hover:text-white underline">info@jamfifyafrica.com</a>
+              </li>
+              <li>
+                📞 <a href="tel:+48517100019" className="hover:text-white underline">+48 517 100 019</a>
+              </li>
+              <li className="flex items-center gap-2">
+                👍{" "}
+                <a
+                  href="https://www.facebook.com/share/17MUaheGoB/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white underline flex items-center gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-white hover:text-blue-400"
+                  >
+                    <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.12 8.44 9.88v-6.99H8.08v-2.89h2.36V9.84c0-2.33 1.4-3.62 3.53-3.62 1.02 0 2.08.18 2.08.18v2.29h-1.17c-1.15 0-1.5.72-1.5 1.45v1.75h2.56l-.41 2.89h-2.15v6.99C18.34 21.19 22 17.06 22 12.07z" />
+                  </svg>
+                  <span>Facebook</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right - Legal */}
+          <div className="flex flex-col gap-2 text-sm text-gray-400 md:items-end">
+            <p>© {new Date().getFullYear()} Jamfify Africa — Certified Jamf Now Partner</p>
+            <div className="flex gap-4">
+              <a href="#" className="hover:text-white">Privacy</a>
+              <a href="#" className="hover:text-white">Terms</a>
+            </div>
           </div>
         </div>
       </footer>
