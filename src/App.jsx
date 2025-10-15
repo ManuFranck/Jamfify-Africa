@@ -156,62 +156,93 @@ export default function App() {
       </section>
 
       {/* SOLUTIONS */}
-<section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
-  <div className="max-w-7xl mx-auto px-6 text-center">
+<section id="solutions" className="py-20 bg-[var(--jamf-bg)] relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
     <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
       Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
     </h3>
     <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-12">
-      Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — bringing Jamf’s best-in-class solutions to local teams and businesses.
+      Jamfify Africa brings Jamf’s trusted device management capabilities to Africa — automating Apple deployment, 
+      security, and user empowerment with modern, cloud-based simplicity.
     </p>
 
-    {/* Animated Features */}
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+    {/* Animated Feature Grid */}
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
       {[
         {
-          title: "Automated Apple Deployment",
-          desc: "Instant device setup with zero-touch provisioning — iMacs, iPads, and MacBooks are auto-enrolled and preconfigured.",
-          icon: "💻",
+          title: "Zero-Touch Deployment",
+          desc: "Automate Apple device setup with preconfigured policies — ready to use right out of the box.",
+          color: "#39B68D",
+          icon: "✅",
+          delay: 0.05,
+        },
+        {
+          title: "Instant App Setup",
+          desc: "Deploy critical apps and software automatically during enrollment — saving time for IT and users.",
+          color: "#E2574C",
+          icon: "📲",
           delay: 0.1,
         },
         {
-          title: "Centralized Device Dashboard",
-          desc: "View all managed devices and their compliance status in a unified dashboard that makes monitoring effortless.",
+          title: "Remote Management",
+          desc: "Lock, wipe, or update Apple devices remotely, ensuring security and compliance from anywhere.",
+          color: "#0A2540",
+          icon: "🔒",
+          delay: 0.15,
+        },
+        {
+          title: "Compliance Automation",
+          desc: "Automate compliance checks and maintain visibility over your fleet — no manual tracking required.",
+          color: "#4F7FFF",
           icon: "📊",
           delay: 0.2,
         },
         {
-          title: "Remote Security Enforcement",
-          desc: "Protect company data and enforce device security remotely with advanced Apple frameworks — all in real-time.",
-          icon: "🔒",
+          title: "Self Service",
+          desc: "Empower users to install approved apps and updates without IT involvement — boosting productivity.",
+          color: "#39B68D",
+          icon: "🧑‍💻",
+          delay: 0.25,
+        },
+        {
+          title: "Apple Business Manager Integration",
+          desc: "Seamlessly link with ABM to sync Apple devices and enable zero-touch enrollment automatically.",
+          color: "#E2574C",
+          icon: "🏢",
           delay: 0.3,
         },
         {
-          title: "App Distribution & Updates",
-          desc: "Easily distribute App Store or in-house apps, and ensure all devices are up to date with the latest versions.",
-          icon: "📱",
-          delay: 0.4,
+          title: "Security & Data Protection",
+          desc: "Keep company data safe with device encryption, password policies, and remote enforcement.",
+          color: "#0A2540",
+          icon: "🛡️",
+          delay: 0.35,
         },
         {
-          title: "User Empowerment Portal",
-          desc: "Empower your teams through a Jamf self-service portal — install approved apps and updates without IT assistance.",
-          icon: "🧑‍💻",
-          delay: 0.5,
+          title: "Cloud-Based Simplicity",
+          desc: "No servers or complex setup — Jamf Now runs securely in the cloud for easy, reliable management.",
+          color: "#4F7FFF",
+          icon: "☁️",
+          delay: 0.4,
         },
       ].map((item) => (
         <motion.div
           key={item.title}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: item.delay }}
           viewport={{ once: true }}
-          className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition"
+          className="p-6 bg-white rounded-2xl shadow-md hover:shadow-[0_0_25px_rgba(10,37,64,0.15)] 
+                     transition-transform transform hover:-translate-y-1 hover:scale-[1.02] duration-300"
         >
-          <div className="text-5xl mb-4">{item.icon}</div>
-          <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
-            {item.title}
-          </h4>
-          <p className="text-gray-600 text-sm">{item.desc}</p>
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md"
+            style={{ backgroundColor: item.color }}
+          >
+            <span className="text-2xl text-white">{item.icon}</span>
+          </div>
+          <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">{item.title}</h4>
+          <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
         </motion.div>
       ))}
     </div>
@@ -226,6 +257,9 @@ export default function App() {
       </a>
     </div>
   </div>
+
+  {/* Gradient Background */}
+  <div className="absolute inset-0 bg-gradient-to-tr from-[#E8F1FF]/40 to-transparent pointer-events-none"></div>
 </section>
 
 
