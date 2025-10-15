@@ -58,7 +58,7 @@ export default function App() {
         id="top"
         className="bg-gradient-to-br from-[var(--jamf-navy)] to-[var(--jamf-blue)] text-white py-20"
       >
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+        {/* <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
           <motion.div
             initial={{ x: -30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -88,7 +88,68 @@ export default function App() {
               </a>
             </div>
           </motion.div>
-        </div>
+        </div> */}
+
+        {/* 🎬 Desktop Background Video */}
+  <div className="absolute inset-0 z-0 hidden md:block">
+    <iframe
+      className="w-full h-full"
+      src="https://www.youtube.com/embed/nRZDWm2UMic?autoplay=1&mute=1&loop=1&playlist=nRZDWm2UMic&controls=0&modestbranding=1&showinfo=0"
+      title="Jamf Now – Empowering Africa with Jamf Expertise"
+      frameBorder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+    {/* Dark overlay for readability */}
+    <div className="absolute inset-0 bg-black/60"></div>
+  </div>
+
+  {/* 🖼️ Mobile Fallback Image */}
+  <div
+    className="absolute inset-0 z-0 block md:hidden bg-cover bg-center"
+    style={{
+      backgroundImage:
+        "url('https://jamfifyafrica.com/logo.png')", // you can replace this with a real background photo later
+    }}
+  >
+    <div className="absolute inset-0 bg-black/70"></div>
+  </div>
+
+  {/* 🧭 Content */}
+  <div className="relative z-10 py-32 px-6 max-w-7xl mx-auto text-center md:text-left">
+    <motion.div
+      initial={{ y: 30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        Empowering Africa with Jamf Now Expertise
+      </h2>
+      <p className="mt-4 text-lg text-gray-100 max-w-2xl">
+        Onboarding and Managed Services to deploy, secure, and manage Apple devices with confidence.
+      </p>
+
+      <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <a
+          href="#contact"
+          className="px-6 py-3 bg-white text-[var(--jamf-navy)] font-medium rounded-lg shadow hover:bg-gray-100"
+        >
+          Get Started
+        </a>
+        <a
+          href="https://signup.jamfnow.com?a=51f49dc4-a6ca-4355-938e-3d6eef50bf57"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 border border-white rounded-lg text-white hover:bg-white hover:text-[var(--jamf-navy)]"
+        >
+          Sign up with Jamf Now
+        </a>
+      </div>
+    </motion.div>
+  </div>
+
+
+        
       </section>
 
       {/* SERVICES */}
