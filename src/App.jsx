@@ -389,4 +389,23 @@ export default function App() {
       </footer>
     </div>
   );
+
+// Disable YouTube video on mobile viewports dynamically
+React.useEffect(() => {
+  const video = document.getElementById("jamf-video");
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      video?.setAttribute("src", ""); // unload the video
+    } else {
+      video?.setAttribute(
+        "src",
+        "https://www.youtube.com/embed/nRZDWm2UMic?autoplay=1&mute=1&loop=1&playlist=nRZDWm2UMic&controls=0&modestbranding=1&showinfo=0"
+      );
+    }
+  };
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
 }
