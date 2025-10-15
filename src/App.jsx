@@ -217,8 +217,136 @@ export default function App() {
         </div>
       </section>
 
-      {/* PRICING + CONTACT + FOOTER sections remain same from the last version */}
-      {/* ... */}
+      {/* PRICING */}
+      <section id="pricing" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h3 className="text-3xl font-bold mb-8 text-[#0A2540]">Pricing Plans</h3>
+          <p className="mb-12 text-gray-600">
+            Flexible plans designed for every business size.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Starter",
+                price: "€9 /device/month",
+                features: ["Zero-touch setup", "Basic commands", "Email support"],
+              },
+              {
+                name: "Professional",
+                price: "€19 /device/month",
+                features: ["All Starter features", "Compliance tools", "App management", "Priority support"],
+                highlight: true,
+              },
+              {
+                name: "Enterprise",
+                price: "Custom",
+                features: ["All Pro features", "Custom integrations", "Dedicated account manager"],
+              },
+            ].map((plan, idx) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.2 }}
+                viewport={{ once: true }}
+                className={`p-8 rounded-2xl shadow-md ${
+                  plan.highlight
+                    ? "bg-gradient-to-br from-[#0055A4] to-[#0A2540] text-white"
+                    : "bg-[#F5F7FA]"
+                }`}
+              >
+                <h4 className="text-2xl font-semibold mb-4">{plan.name}</h4>
+                <p className="text-3xl font-bold mb-6">{plan.price}</p>
+                <ul className="mb-6 space-y-2 text-left">
+                  {plan.features.map((f, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="mr-3">✔️</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contact"
+                  className={`inline-block px-6 py-3 rounded-lg font-medium ${
+                    plan.highlight
+                      ? "bg-white text-[#0A2540] hover:bg-gray-100"
+                      : "bg-[#0A2540] text-white hover:bg-[#162141]"
+                  }`}
+                >
+                  Select Plan
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-20 bg-[#F5F7FA]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h3 className="text-3xl font-bold text-[#0A2540] mb-4">Contact Us</h3>
+          <p className="text-gray-600 mb-8">
+            Have a question? Get in touch with our Jamf experts today.
+          </p>
+
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            className="grid gap-4 text-left"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="text" name="name" placeholder="Your name" required className="p-3 border rounded-md" />
+            <input type="email" name="email" placeholder="Your email" required className="p-3 border rounded-md" />
+            <textarea name="message" placeholder="Message" required className="p-3 border rounded-md h-32" />
+            <button
+              type="submit"
+              className="px-6 py-3 bg-[#0A2540] text-white rounded-lg font-medium hover:bg-[#162141]"
+            >
+              Send Message
+            </button>
+            {status.message && (
+              <p
+                className={`text-sm mt-2 ${
+                  status.state === "success"
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                {status.message}
+              </p>
+            )}
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-[#0A2540] text-gray-300 py-10">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-start">
+          <div>
+            <div className="flex items-center gap-3">
+              <img src={logoUrl} alt="Jamfify Africa Logo" className="w-10 h-10" />
+              <span className="font-semibold text-white text-lg">Jamfify Africa</span>
+            </div>
+            <p className="text-sm text-gray-400 mt-2 leading-relaxed">
+              Certified Jamf Now Partner helping African businesses deploy, manage, and secure Apple devices efficiently.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-3">Contact Us</h4>
+            <p className="text-sm">
+              📧 <a href="mailto:info@jamfifyafrica.com" className="hover:text-white underline">info@jamfifyafrica.com</a><br />
+              📞 <a href="tel:+48517100019" className="hover:text-white underline">+48 517 100 019</a>
+            </p>
+          </div>
+          <div className="text-sm text-gray-400 md:text-right">
+            <p>© {new Date().getFullYear()} Jamfify Africa — Certified Jamf Now Partner</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
