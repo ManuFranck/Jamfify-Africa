@@ -6,20 +6,22 @@ export default function App() {
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
 
-    try {
-      const res = await fetch("/", { method: "POST", body: data });
-      if (res.ok) {
-        setStatus({ state: "success", message: "Thanks! Your message has been sent." });
-        form.reset();
-      } else throw new Error("Form submission failed");
-    } catch (err) {
-      setStatus({ state: "error", message: err.message });
-    }
+  try {
+    await fetch("/", {
+      method: "POST",
+      body: formData,
+    });
+
+    setStatus({ state: "success", message: "Thanks! Your message has been sent." });
+    form.reset();
+  } catch (error) {
+    setStatus({ state: "error", message: "Form submission failed." });
   }
+}
 
   return (
     <div className="min-h-screen bg-[var(--jamf-bg)] text-[var(--jamf-text)] antialiased scroll-smooth">
