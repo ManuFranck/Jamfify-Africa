@@ -137,122 +137,91 @@ export default function App() {
       </section>
 
       {/* SOLUTIONS */}
-<section
-  id="solutions"
-  className="py-24 bg-gradient-to-br from-[#F8FAFC] to-white relative overflow-hidden"
->
-  <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-    <motion.h3
-      className="text-3xl md:text-4xl font-extrabold text-[var(--jamf-navy)] mb-6"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
+<section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+    <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
       Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
-    </motion.h3>
+    </h3>
+    <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-10">
+      Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — 
+      bringing Jamf’s best-in-class solutions to local teams and businesses.
+    </p>
 
-    <motion.p
-      className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-14"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ delay: 0.3, duration: 0.8 }}
-      viewport={{ once: true }}
-    >
-      As a trusted Jamf Now Affiliate, <strong>Jamfify Africa</strong> empowers businesses across Africa
-      to seamlessly deploy, manage, and secure Apple devices — combining Jamf’s best-in-class tools
-      with expert onboarding and ongoing optimization.
-    </motion.p>
+    {/* Features Grid */}
+    <div className="grid md:grid-cols-3 gap-8 text-left">
+      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+        <img
+          src="https://www.jamf.com/assets/img/icons/icon-deployment.svg"
+          alt="Deployment"
+          className="w-12 h-12 mb-4"
+        />
+        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
+          Zero-Touch Deployment
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Automate the setup and configuration of new Apple devices right out of the box using Apple Business Manager and Jamf Now.
+        </p>
+      </div>
 
-    {/* Original 3 Solution Cards */}
-    <div className="grid md:grid-cols-3 gap-10 mb-16">
-      {[
-        {
-          title: "Deployment & Configuration",
-          desc: "Streamline Apple device rollout with zero-touch deployment using Apple Business Manager and Jamf Now.",
-          img: "https://images.jamf.com/images/home/jamf-pro-deployment.png",
-        },
-        {
-          title: "Security & Compliance",
-          desc: "Protect company data and enforce compliance with Jamf’s advanced security frameworks for Apple devices.",
-          img: "https://images.jamf.com/images/home/jamf-pro-security.png",
-        },
-        {
-          title: "Ongoing Support & Optimization",
-          desc: "Get continuous support and performance insights to keep your Apple ecosystem efficient and secure.",
-          img: "https://images.jamf.com/images/home/jamf-pro-dashboard.png",
-        },
-      ].map((card, index) => (
-        <motion.div
-          key={index}
-          className="p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src={card.img}
-            alt={card.title}
-            className="w-full h-40 object-contain mb-5 rounded-xl"
-          />
-          <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-3">{card.title}</h4>
-          <p className="text-gray-600 text-sm leading-relaxed">{card.desc}</p>
-        </motion.div>
-      ))}
+      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+        <img
+          src="https://www.jamf.com/assets/img/icons/icon-management.svg"
+          alt="Device Management"
+          className="w-12 h-12 mb-4"
+        />
+        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
+          Device Management
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Gain complete control over your Apple fleet with remote commands, inventory, and configuration profiles — all in one place.
+        </p>
+      </div>
+
+      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+        <img
+          src="https://www.jamf.com/assets/img/icons/icon-security.svg"
+          alt="Security & Compliance"
+          className="w-12 h-12 mb-4"
+        />
+        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
+          Security & Compliance
+        </h4>
+        <p className="text-gray-600 text-sm">
+          Protect company data with Jamf’s advanced Apple security frameworks — including encryption enforcement and threat detection.
+        </p>
+      </div>
     </div>
 
-    {/* Jamf Now Feature Highlights */}
-    <div className="space-y-20">
-      {[
-        {
-          title: "Automated Apple Deployment",
-          desc: "Simplify provisioning with zero-touch setup. Jamf Now automatically configures your Macs, iPads, and iPhones — right out of the box.",
-          img: "https://images.jamf.com/images/home/deployment.png",
-        },
-        {
-          title: "Centralized Device Dashboard",
-          desc: "View and manage every Apple device in real-time with a single intuitive dashboard powered by Jamf Now.",
-          img: "https://images.jamf.com/images/home/dashboard.png",
-        },
-        {
-          title: "Remote Security Enforcement",
-          desc: "Remotely lock, wipe, or secure devices to maintain compliance and safeguard business data across your fleet.",
-          img: "https://images.jamf.com/images/home/security-lock.png",
-        },
-        {
-          title: "App Distribution & Updates",
-          desc: "Deploy company apps and updates instantly — no cables, no manual installs. Keep your teams productive and secure.",
-          img: "https://images.jamf.com/images/home/app-management.png",
-        },
-        {
-          title: "User Empowerment Portal",
-          desc: "Enable employees to access resources and apps easily through Jamf’s intuitive self-service experience.",
-          img: "https://images.jamf.com/images/home/self-service.png",
-        },
-      ].map((feature, i) => (
-        <motion.div
-          key={i}
-          className={`grid md:grid-cols-2 gap-10 items-center ${
-            i % 2 === 1 ? "md:flex-row-reverse" : ""
-          }`}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src={feature.img}
-            alt={feature.title}
-            className="rounded-2xl shadow-md w-full h-64 object-contain"
-          />
-          <div className="text-left md:pl-8">
-            <h4 className="text-2xl font-semibold text-[var(--jamf-navy)] mb-3">{feature.title}</h4>
-            <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
-          </div>
-        </motion.div>
-      ))}
+    {/* Extra Animated Features */}
+    <div className="mt-16 grid md:grid-cols-2 gap-8 items-center">
+      <div className="p-8 bg-gradient-to-br from-[var(--jamf-blue)] to-[var(--jamf-navy)] text-white rounded-2xl shadow-lg">
+        <h4 className="text-2xl font-semibold mb-3">Automated Apple Deployment</h4>
+        <p className="text-gray-100 mb-4">
+          Simplify provisioning with zero-touch setup. Jamf Now automatically configures your Apple devices the moment they’re activated.
+        </p>
+        <img
+          src="https://www.jamf.com/assets/img/solutions/zero-touch-deployment.png"
+          alt="Automated Deployment"
+          className="rounded-lg shadow-md"
+        />
+      </div>
+
+      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+        <h4 className="text-2xl font-semibold text-[var(--jamf-navy)] mb-3">
+          Jamf Self Service
+        </h4>
+        <p className="text-gray-600 mb-4">
+          Empower users with instant access to apps, updates, and resources — reducing IT tickets and improving end-user productivity.
+        </p>
+        <img
+          src="https://www.jamf.com/assets/img/solutions/self-service.png"
+          alt="Jamf Self Service"
+          className="rounded-lg shadow-md"
+        />
+      </div>
     </div>
+  </div>
+</section>
 
     {/* CTA */}
     <div className="mt-20">
