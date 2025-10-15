@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function App() {
   const logoUrl = "/logo.png";
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,28 +21,63 @@ export default function App() {
     }
   }
 
+  function handleNavClick() {
+    setMenuOpen(false);
+  }
+
   return (
     <div className="min-h-screen bg-[var(--jamf-bg)] text-[var(--jamf-text)] antialiased scroll-smooth">
-
       {/* HEADER */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-3">
+          <a href="#top" className="flex items-center gap-3" onClick={handleNavClick}>
             <img src={logoUrl} alt="Jamfify Africa Logo" className="w-12 h-12" />
             <div>
               <h1 className="text-xl font-semibold text-[var(--jamf-navy)]">Jamfify Africa</h1>
               <p className="text-sm text-gray-500">Certified Jamf Now Partner</p>
             </div>
           </a>
+
+          {/* Desktop Nav */}
           <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
             <a href="#services" className="hover:text-[var(--jamf-blue)]">Services</a>
             <a href="#solutions" className="hover:text-[var(--jamf-blue)]">Solutions</a>
             <a href="#pricing" className="hover:text-[var(--jamf-blue)]">Pricing</a>
-            <a href="#contact" className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]">
+            <a
+              href="#contact"
+              className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]"
+            >
               Contact
             </a>
           </nav>
+
+          {/* Mobile Hamburger */}
+          <button
+            className="md:hidden text-[var(--jamf-navy)]"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
+
+        {/* Mobile Nav */}
+        {menuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200">
+            <nav className="flex flex-col text-center py-4 space-y-3">
+              {["services", "solutions", "pricing", "contact"].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  onClick={handleNavClick}
+                  className="py-2 hover:text-[var(--jamf-blue)]"
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* HERO SECTION */}
@@ -49,8 +86,7 @@ export default function App() {
         className="bg-gradient-to-br from-[var(--jamf-navy)] to-[var(--jamf-blue)] text-white py-20"
       >
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-          
-          {/* LEFT - TEXT */}
+          {/* LEFT */}
           <motion.div
             initial={{ x: -30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -62,7 +98,6 @@ export default function App() {
             <p className="mt-4 text-lg text-gray-100">
               Onboarding and Managed Services to deploy, secure, and manage Apple devices with confidence.
             </p>
-
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#contact"
@@ -113,23 +148,19 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-8 text-left">
             <div className="p-8 bg-[var(--jamf-bg)] rounded-2xl shadow hover:shadow-md transition">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Onboarding Services</h4>
-              <p className="mt-3 text-gray-600">
-                Setup, Apple Business Manager, enrollment, configuration.
-              </p>
               <ul className="mt-4 text-gray-600 list-disc list-inside">
                 <li>Apple Business Manager linking</li>
-                <li>Device enrollment / policies</li>
-                <li>Security & compliance profiles</li>
+                <li>Device enrollment & configuration</li>
+                <li>Security & compliance setup</li>
               </ul>
             </div>
 
             <div className="p-8 bg-[var(--jamf-bg)] rounded-2xl shadow hover:shadow-md transition">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Managed Services</h4>
-              <p className="mt-3 text-gray-600">Ongoing operations, security, updates, optimization.</p>
               <ul className="mt-4 text-gray-600 list-disc list-inside">
-                <li>Continuous monitoring & updates</li>
-                <li>Policy reviews & compliance</li>
-                <li>Priority support & optimization</li>
+                <li>Continuous monitoring</li>
+                <li>Policy updates & optimization</li>
+                <li>Priority support & troubleshooting</li>
               </ul>
             </div>
           </div>
@@ -137,119 +168,53 @@ export default function App() {
       </section>
 
       {/* SOLUTIONS */}
-<section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
-  <div className="max-w-7xl mx-auto px-6 text-center">
-    <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
-      Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
-    </h3>
-    <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-10">
-      Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — 
-      bringing Jamf’s best-in-class solutions to local teams and businesses.
-    </p>
+      <section id="solutions" className="py-20 bg-[var(--jamf-bg)]">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">
+            Apple Management Solutions from a Professional and Certified Jamf Now Affiliate
+          </h3>
+          <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-10">
+            Jamfify Africa empowers organizations across Africa to deploy, manage, and secure Apple devices with precision — bringing Jamf’s best-in-class solutions to local teams and businesses.
+          </p>
 
-    {/* Features Grid */}
-    <div className="grid md:grid-cols-3 gap-8 text-left">
-      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
-        <img
-          src="https://www.jamf.com/assets/img/icons/icon-deployment.svg"
-          alt="Deployment"
-          className="w-12 h-12 mb-4"
-        />
-        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
-          Zero-Touch Deployment
-        </h4>
-        <p className="text-gray-600 text-sm">
-          Automate the setup and configuration of new Apple devices right out of the box using Apple Business Manager and Jamf Now.
-        </p>
-      </div>
-
-      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
-        <img
-          src="https://www.jamf.com/assets/img/icons/icon-management.svg"
-          alt="Device Management"
-          className="w-12 h-12 mb-4"
-        />
-        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
-          Device Management
-        </h4>
-        <p className="text-gray-600 text-sm">
-          Gain complete control over your Apple fleet with remote commands, inventory, and configuration profiles — all in one place.
-        </p>
-      </div>
-
-      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
-        <img
-          src="https://www.jamf.com/assets/img/icons/icon-security.svg"
-          alt="Security & Compliance"
-          className="w-12 h-12 mb-4"
-        />
-        <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">
-          Security & Compliance
-        </h4>
-        <p className="text-gray-600 text-sm">
-          Protect company data with Jamf’s advanced Apple security frameworks — including encryption enforcement and threat detection.
-        </p>
-      </div>
-    </div>
-
-    {/* Extra Animated Features */}
-    <div className="mt-16 grid md:grid-cols-2 gap-8 items-center">
-      <div className="p-8 bg-gradient-to-br from-[var(--jamf-blue)] to-[var(--jamf-navy)] text-white rounded-2xl shadow-lg">
-        <h4 className="text-2xl font-semibold mb-3">Automated Apple Deployment</h4>
-        <p className="text-gray-100 mb-4">
-          Simplify provisioning with zero-touch setup. Jamf Now automatically configures your Apple devices the moment they’re activated.
-        </p>
-        <img
-          src="https://www.jamf.com/assets/img/solutions/zero-touch-deployment.png"
-          alt="Automated Deployment"
-          className="rounded-lg shadow-md"
-        />
-      </div>
-
-      <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
-        <h4 className="text-2xl font-semibold text-[var(--jamf-navy)] mb-3">
-          Jamf Self Service
-        </h4>
-        <p className="text-gray-600 mb-4">
-          Empower users with instant access to apps, updates, and resources — reducing IT tickets and improving end-user productivity.
-        </p>
-        <img
-          src="https://www.jamf.com/assets/img/solutions/self-service.png"
-          alt="Jamf Self Service"
-          className="rounded-lg shadow-md"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-    {/* CTA */}
-    <div className="mt-20">
-      <a
-        href="#contact"
-        className="inline-block px-8 py-4 bg-[var(--jamf-navy)] text-white font-semibold rounded-xl shadow hover:bg-[#162141] transition"
-      >
-        Explore Jamf Solutions
-      </a>
-    </div>
-  </div>
-
-  {/* Subtle Gradient Background Accent */}
-  <div className="absolute inset-0 bg-gradient-to-tr from-[#E8F1FF]/40 to-transparent pointer-events-none"></div>
-</section>
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            {[
+              {
+                title: "Zero-Touch Deployment",
+                img: "https://www.jamf.com/assets/img/icons/icon-deployment.svg",
+                desc: "Automate the setup and configuration of new Apple devices right out of the box using Apple Business Manager and Jamf Now.",
+              },
+              {
+                title: "Device Management",
+                img: "https://www.jamf.com/assets/img/icons/icon-management.svg",
+                desc: "Gain full control over your Apple fleet with remote commands, inventory, and configuration profiles — all in one place.",
+              },
+              {
+                title: "Security & Compliance",
+                img: "https://www.jamf.com/assets/img/icons/icon-security.svg",
+                desc: "Protect company data with Jamf’s advanced Apple security frameworks — including encryption enforcement and threat detection.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+                <img src={item.img} alt={item.title} className="w-12 h-12 mb-4" />
+                <h4 className="text-xl font-semibold text-[var(--jamf-navy)] mb-2">{item.title}</h4>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* PRICING */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h3 className="text-3xl font-bold mb-6 text-[var(--jamf-navy)]">Pricing Plans</h3>
-
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-[var(--jamf-bg)] p-8 rounded-2xl shadow">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Onboarding Package</h4>
               <p className="mt-3 text-gray-600">Full setup and configuration services.</p>
               <div className="mt-4 text-2xl font-bold">From €1,000 (one-time)</div>
             </div>
-
             <div className="bg-[var(--jamf-bg)] p-8 rounded-2xl shadow">
               <h4 className="text-xl font-semibold text-[var(--jamf-navy)]">Managed Services Plan</h4>
               <p className="mt-3 text-gray-600">Monthly plan for ongoing support.</p>
@@ -263,9 +228,7 @@ export default function App() {
       <section id="contact" className="py-20 bg-[var(--jamf-bg)]">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h3 className="text-3xl font-bold text-[var(--jamf-navy)] mb-4">Contact Us</h3>
-          <p className="text-gray-600 mb-8">
-            Ready to get started with Jamf? Reach out or sign up directly.
-          </p>
+          <p className="text-gray-600 mb-8">Ready to get started with Jamf? Reach out or sign up directly.</p>
 
           <form
             name="contact"
@@ -277,11 +240,8 @@ export default function App() {
           >
             <input type="hidden" name="form-name" value="contact" />
             <p className="hidden">
-              <label>
-                Don’t fill this out if you’re human: <input name="bot-field" />
-              </label>
+              <label>Don’t fill this out: <input name="bot-field" /></label>
             </p>
-
             <input type="text" name="name" placeholder="Your name" required className="p-3 border rounded-md" />
             <input type="email" name="email" placeholder="Your email" required className="p-3 border rounded-md" />
             <textarea name="message" placeholder="How can we help you?" required className="p-3 border rounded-md h-32" />
@@ -295,15 +255,7 @@ export default function App() {
             </button>
 
             {status.state !== "idle" && (
-              <p
-                className={`text-sm mt-2 ${
-                  status.state === "success"
-                    ? "text-green-600"
-                    : status.state === "error"
-                    ? "text-red-600"
-                    : "text-gray-600"
-                }`}
-              >
+              <p className={`text-sm mt-2 ${status.state === "success" ? "text-green-600" : "text-red-600"}`}>
                 {status.message}
               </p>
             )}
