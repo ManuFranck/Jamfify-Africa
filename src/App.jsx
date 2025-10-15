@@ -295,7 +295,7 @@ export default function App() {
               <li className="flex items-center gap-2">
                 👍{" "}
                 <a
-                  href="https://www.facebook.com/share/17MUaheGoB/?mibextid=wwXIfr"
+                  href="https://m.facebook.com/61582317331699/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white underline flex items-center gap-1"
