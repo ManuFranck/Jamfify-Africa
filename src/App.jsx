@@ -39,82 +39,57 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--jamf-bg)] text-[var(--jamf-text)] antialiased scroll-smooth">
-      {/* HEADER */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-3">
-            <img src={logoUrl} alt="Jamfify Africa Logo" className="w-12 h-12" />
-            <div>
-              <h1 className="text-xl font-semibold text-[var(--jamf-navy)]">
-                Jamfify Africa
-              </h1>
-              <p className="text-sm text-gray-500">Certified Jamf Now Partner</p>
-            </div>
-          </a>
+  <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
+      <img src={logoUrl} alt="Jamfify Africa Logo" className="w-12 h-12" />
+      <div>
+        <h1 className="text-xl font-semibold text-[var(--jamf-navy)]">Jamfify Africa</h1>
+        <p className="text-sm text-gray-500">Certified Jamf Now Partner</p>
+      </div>
+    </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
-            <a href="#services" className="hover:text-[var(--jamf-blue)]">
-              Services
-            </a>
-            <a href="#solutions" className="hover:text-[var(--jamf-blue)]">
-              Solutions
-            </a>
-            <a href="#pricing" className="hover:text-[var(--jamf-blue)]">
-              Pricing
-            </a>
-            <a
-              href="#contact"
-              className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]"
-            >
-              Contact
-            </a>
-          </nav>
+    {/* Desktop Nav */}
+    <nav className="hidden md:flex gap-6 items-center text-sm font-medium">
+      <a href="#services" className="hover:text-[var(--jamf-blue)]">Services</a>
+      <a href="#solutions" className="hover:text-[var(--jamf-blue)]">Solutions</a>
+      <a href="#pricing" className="hover:text-[var(--jamf-blue)]">Pricing</a>
+      <a
+        href="#contact"
+        className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]"
+      >
+        Contact
+      </a>
+    </nav>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden text-[var(--jamf-navy)]"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+    {/* Mobile Hamburger */}
+    <button
+      className="md:hidden text-[var(--jamf-navy)]"
+      onClick={() => setMenuOpen(!menuOpen)}
+      aria-label="Toggle menu"
+    >
+      {menuOpen ? <X size={26} /> : <Menu size={26} />}
+    </button>
+  </div>
+
+  {/* Mobile Nav */}
+  {menuOpen && (
+    <div className="md:hidden bg-white border-t border-gray-200">
+      <nav className="flex flex-col text-center py-4 space-y-3">
+        {["services", "solutions", "pricing", "contact"].map((item) => (
+          <a
+            key={item}
+            href={`#${item}`}
+            onClick={() => setMenuOpen(false)}
+            className="py-2 hover:text-[var(--jamf-blue)]"
           >
-            {menuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu Drawer */}
-        {menuOpen && (
-          <div className="md:hidden bg-white shadow-inner flex flex-col items-center py-4 gap-4 border-t border-gray-100">
-            <a
-              href="#services"
-              className="hover:text-[var(--jamf-blue)]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Services
-            </a>
-            <a
-              href="#solutions"
-              className="hover:text-[var(--jamf-blue)]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Solutions
-            </a>
-            <a
-              href="#pricing"
-              className="hover:text-[var(--jamf-blue)]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Pricing
-            </a>
-            <a
-              href="#contact"
-              className="px-5 py-2 rounded-lg bg-[var(--jamf-navy)] text-white shadow hover:bg-[#162141]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </a>
-          </div>
-        )}
-      </header>
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </a>
+        ))}
+      </nav>
+    </div>
+  )}
+</header>
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden text-white">
